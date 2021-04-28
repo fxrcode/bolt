@@ -108,7 +108,7 @@ func (n *branchPageElement) key() []byte {
 
 // leafPageElement represents a node on a leaf page.
 type leafPageElement struct {
-	flags uint32
+	flags uint32 // all flags (inode, page, etc) is consistent: 1 for sub-bucket, 0 for kv.
 	pos   uint32
 	ksize uint32
 	vsize uint32

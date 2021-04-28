@@ -51,7 +51,7 @@ const maxAllocSize = 0x7FFFFFFF
 func (n *leafPageElement) key() []byte {
 	buf := (*[maxAllocSize]byte)(unsafe.Pointer(n))
 	// pos~ksize
-	fmt.Println(buf[:unsafe.Sizeof(leafPageElement{})],len(buf))
+	fmt.Println(buf[:unsafe.Sizeof(leafPageElement{})], len(buf))
 	return (*[maxAllocSize]byte)(unsafe.Pointer(&buf[n.pos]))[:n.ksize:n.ksize]
 }
 
@@ -59,7 +59,7 @@ func (n *leafPageElement) key() []byte {
 // value returns a byte slice of the node value.
 func (n *leafPageElement) value() []byte {
 	buf := (*[maxAllocSize]byte)(unsafe.Pointer(n))
-	fmt.Println(buf[:unsafe.Sizeof(leafPageElement{})],len(buf))
+	fmt.Println(buf[:unsafe.Sizeof(leafPageElement{})], len(buf))
 	// key:pos~ksize
 	// value:pos+ksize~pos+ksize+vsize
 	return (*[maxAllocSize]byte)(unsafe.Pointer(&buf[n.pos+n.ksize]))[:n.vsize:n.vsize]
