@@ -598,7 +598,8 @@ func (s nodes) Less(i, j int) bool {
 // to an element which hasn't been added to a page yet.
 type inode struct {
 	flags uint32 // all flags (leafPageElement, page, etc) is consistent: 1 for sub-bucket, 0 for kv.
-	pgid  pgid
+	// 当inode为分支元素时，pgid才有值，为叶子元素时，则没值
+	pgid  pgid // 指向的分支/叶子节点的 page id
 	key   []byte
 	value []byte
 }
