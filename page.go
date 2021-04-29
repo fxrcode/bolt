@@ -95,9 +95,9 @@ func (s pages) Less(i, j int) bool { return s[i].id < s[j].id }
 
 // branchPageElement represents a node on a branch page.
 type branchPageElement struct {
-	pos   uint32
+	pos   uint32 //该元信息和真实 key之间的偏移量
 	ksize uint32
-	pgid  pgid
+	pgid  pgid // 该元素的页 id
 }
 
 // key returns a byte slice of the node key.
