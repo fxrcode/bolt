@@ -283,7 +283,7 @@ func (c *Cursor) searchNode(key []byte, n *node) {
 		return ret != -1
 	})
 	if !exact && index > 0 {
-		index--
+		index-- // fxr: So exact= false -> 1st inode.key > key, then we go the left inode to recursion.
 	}
 	c.stack[len(c.stack)-1].index = index
 
