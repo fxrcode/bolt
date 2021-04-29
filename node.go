@@ -113,9 +113,11 @@ func (n *node) prevSibling() *node {
 }
 
 // put inserts a key/value.
+// 如果put的是一个key、value的话，不需要指定pgid。
+// 如果put的一个树枝节点，则需要指定pgid，不需要指定value
 func (n *node) put(oldKey, newKey, value []byte, pgid pgid, flags uint32) {
 	if pgid >= n.bucket.tx.meta.pgid {
-		panic(fmt.Sprintf("pgid (%d) above high water mark (%d)", pgid, n.bucket.tx.meta.pgid))
+		panic(fmt.Sprintf("pgid (%d) above high water mark (%d)", pgid, n.bucket.tx.meta.pgid)) // fxr: what is high watermark?
 	} else if len(oldKey) <= 0 {
 		panic("put: zero-length old key")
 	} else if len(newKey) <= 0 {
