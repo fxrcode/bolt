@@ -21,6 +21,7 @@ type txid uint64
 // them. Pages can not be reclaimed by the writer until no more transactions
 // are using them. A long running read transaction can cause the database to
 // quickly grow.
+// Tx 主要封装了读事务和写事务。其中通过writable来区分是读事务还是写事务
 type Tx struct {
 	writable       bool
 	managed        bool
